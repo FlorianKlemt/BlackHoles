@@ -20,7 +20,7 @@ namespace _Scripts
             Collider[] colliders = Physics.OverlapSphere(transform.position, PullRadius, LayersToPull);
 
             foreach (var collider in colliders)
-            {
+            {            
                 Rigidbody rb = collider.GetComponent<Rigidbody>();
 
                 if (rb == null) continue; // Can only pull objects with Rigidbody
@@ -30,9 +30,17 @@ namespace _Scripts
                 if (direction.magnitude < MinRadius) continue;
 
                 float distance = direction.sqrMagnitude * DistanceMultiplier + 1; // The distance formula
+                Debug.Log(direction.magnitude);
 
                 // Object mass also affects the gravitational pull
-                rb.AddForce(direction.normalized * (GravitationalPull / distance) * rb.mass * Time.fixedDeltaTime);
+                // rb.AddForce(direction.normalized * (GravitationalPull / distance) * rb.mass * Time.fixedDeltaTime);
+                if (direction.magnitude<50) {
+                    rb.velocity = new Vector3(0,0,0);
+                    rb.AddForce(direction.normalized*GravitationalPull*70);
+                } else if (direction.magnitude<100) {
+                    rb.AddForce(direction.normalized*GravitationalPull/20);
+                }
+                
             }
         }
 

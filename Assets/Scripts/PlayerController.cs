@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public float thrust;
+    public float damping;
     public Rigidbody player_rb;
 
     void Start()
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        player_rb.velocity *= damping;
         if (Input.GetKey(KeyCode.A))
             player_rb.AddForce(Vector3.left * thrust);
         if (Input.GetKey(KeyCode.D))
