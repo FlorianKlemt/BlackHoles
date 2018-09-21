@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33815778370652932}
   - component: {fileID: 23432825239037714}
   - component: {fileID: 135797790705133952}
+  - component: {fileID: 114810069925883104}
   m_Layer: 0
   m_Name: BlackHole_Dummy
   m_TagString: Untagged
@@ -84,6 +85,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1323538800989280}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114810069925883104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323538800989280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86516ab9e03a734cb17fb2246276bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PullRadius: 2
+  GravitationalPull: 100
+  MinRadius: 0.1
+  DistanceMultiplier: 30
+  LayersToPull:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!135 &135797790705133952
 SphereCollider:
   m_ObjectHideFlags: 1
