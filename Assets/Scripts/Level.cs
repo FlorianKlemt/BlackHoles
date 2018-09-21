@@ -13,20 +13,24 @@ public class Level : MonoBehaviour {
     public float maxProbability = 0.2f;
 
     public int[,] map;
+    public static Transform[,] transform_map;
 
     void Start()
     {
         MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability);
         map = map_generator.generate_map();
+        transform_map = new Transform[map_generator.width, map_generator.height];
         for(int i=0; i<map_generator.width; i++)
         {
             for (int j = 0; j < map_generator.height; j++)
             {
                 if (map[i, j] == 1)
                 {
-                    Instantiate(black_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
+                    Transform b_hole = Instantiate(black_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
+                    transform_map[i, j] = b_hole;
                 } else if (map[i, j] == 0) {
-                    Instantiate(white_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
+                    Transform w_hole = Instantiate(white_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
+                    transform_map[i, j] = w_hole;
                 }
             }
         }
@@ -36,4 +40,9 @@ public class Level : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public static Transform[,] get_transform_map()
+    {
+        return transform_map;
+    }
 }
