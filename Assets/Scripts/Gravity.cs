@@ -34,7 +34,7 @@ namespace _Scripts
             //fuel reload
             if (Vector3.Distance(player.position, transform.position)<fuel_load_distance)
             {
-                player.gameObject.GetComponent<PlayerFuel>().addFuel(2);
+                player.gameObject.GetComponent<PlayerFuel>().addFuel(250.0f * Time.deltaTime);
             }
 
             //gravity
