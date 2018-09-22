@@ -36,7 +36,6 @@ public class MapGenerator
 
                 float probability = min_blackhole_prob 
                                     + blackhole_prob_range * normalized_distance_to_goal;
-                Debug.Log(probability);
                 if(random.NextDouble() < probability){
                     //is black hole
                     map[i,j] = 1;

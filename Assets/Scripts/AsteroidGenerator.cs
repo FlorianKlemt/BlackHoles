@@ -35,7 +35,7 @@ public class AsteroidGenerator : MonoBehaviour {
         Vector2 random_direction = Random.insideUnitCircle.normalized;
 
         Transform new_astroid = Instantiate(astroid, new Vector3(spawn_point.x, 0, spawn_point.y),
-                                            Quaternion.identity);
+                                            Random.rotation);
         new_astroid.GetComponent<Rigidbody>().velocity 
             = new Vector3(random_direction.x, 0, random_direction.y) * speed;
         Destroy(new_astroid.gameObject, life_time);
