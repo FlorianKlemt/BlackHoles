@@ -28,10 +28,10 @@ public class Level : MonoBehaviour {
                 {
                     Transform b_hole = Instantiate(black_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
                     transform_map[i, j] = b_hole;
-                } else if (map[i, j] == 0) {
-                    Transform w_hole = Instantiate(white_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
-                    transform_map[i, j] = w_hole;
-                }
+                }// else if (map[i, j] == 0) {
+                 //   Transform w_hole = Instantiate(white_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
+                 //   transform_map[i, j] = w_hole;
+                //}
             }
         }
     }

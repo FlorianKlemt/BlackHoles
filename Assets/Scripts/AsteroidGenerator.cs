@@ -5,9 +5,11 @@ using UnityEngine;
 public class AsteroidGenerator : MonoBehaviour {
 
     public Transform astroid;
+    public Transform player;
 
     // Use this for initialization
-    public float speed, life_time, spawn_cooldown;
+    public float min_speed, max_speed, life_time, spawn_cooldown;
+    public float min_spawn_distance, max_spawn_distance;
     float time_since_last = 0;
 	void Start () {
 
@@ -18,41 +20,26 @@ public class AsteroidGenerator : MonoBehaviour {
         time_since_last += Time.deltaTime;
         if (time_since_last>=spawn_cooldown)
         {
-            //TODO set dynamic spawn location
-            spawn_asteroid(new Vector2Int(10, 10));
+            spawn_asteroid(player.position);
             time_since_last = 0;
         }
 	}
 
-    void spawn_asteroid(Vector2Int current_indizes)
+    void spawn_asteroid(Vector3 current_coordinates)
     {
-        Transform[,] areas = Level.get_transform_map();
+        Vector2 spawn_direction = Random.insideUnitCircle.normalized;
+        float scaling = Random.Range(min_spawn_distance, max_spawn_distance);
+        Vector2 spawn_offset = spawn_direction * scaling;
+        Vector3 spawn_point = current_coordinates + new Vector3(spawn_offset.x, 0, spawn_offset.y);
 
-        Vector2Int spawn_area_indizes = select_random_spawn_area(current_indizes);
-        Transform spawn_area_tranform = areas[spawn_area_indizes.x, spawn_area_indizes.y];
-        Vector2 spawn_point = select_random_point_in_area(spawn_area_tranform);
+        Vector2 movement_direction = Random.insideUnitCircle.normalized;
+        float speed = Random.Range(min_speed, max_speed);
 
-        Vector2 random_direction = Random.insideUnitCircle.normalized;
-
-        Transform new_astroid = Instantiate(astroid, new Vector3(spawn_point.x, 0, spawn_point.y),
-                                            Random.rotation);
+        Transform new_astroid = Instantiate(astroid, spawn_point, Random.rotation);
         new_astroid.GetComponent<Rigidbody>().velocity 
-            = new Vector3(random_direction.x, 0, random_direction.y) * speed;
+            = new Vector3(movement_direction.x, 0, movement_direction.y) * speed;
+        new_astroid.GetComponent<Rigidbody>().angularVelocity 
+            = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
         Destroy(new_astroid.gameObject, life_time);
-    }
-
-    Vector2 select_random_point_in_area(Transform area)
-    {
-        return new Vector2(area.position.x, area.position.z) + Random.insideUnitCircle;
-    }
-
-    //returns map indizes of selected spawn area
-    Vector2Int select_random_spawn_area(Vector2Int player_indizes)
-    {
-        Vector2Int[] validChoices = { new Vector2Int(-1,-1),new Vector2Int(-1, 0),new Vector2Int(-1, 1),
-                new Vector2Int(0,-1),new Vector2Int(0,1),
-                new Vector2Int(1,-1),new Vector2Int(1,0),new Vector2Int(1,1)};
-        Vector2Int spawn_offset = validChoices[Random.Range(0, validChoices.Length)];
-        return player_indizes + spawn_offset;
     }
 }
