@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
     public Transform astroid_explosion_prefab;
     public Transform ship_explosion_prefab;
     private Level level;
+    public float speed_boost_duration;
+    private float current_speed_boost_duration;
+    private bool speedboosted;
 
     private PlayerFuel player_fuel;
 
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour {
         player_rb = GetComponent<Rigidbody>();
         player_fuel = GetComponent<PlayerFuel>();
         level = GameObject.Find("GameController").GetComponent<Level>();
+        current_speed_boost_duration = 0;
+        speedboosted = false;
     }
 
     void FixedUpdate()
@@ -57,6 +62,16 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(player_rb.velocity, Vector3.up);
         }
 
+        if (speedboosted)
+        {
+            current_speed_boost_duration += Time.fixedDeltaTime;
+            if (current_speed_boost_duration >= speed_boost_duration)
+            {
+                thrust /= 2;
+                current_speed_boost_duration = 0;
+                speedboosted = false;
+            }
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -73,9 +88,15 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Shield")
         {
-            applied_shield = Instantiate(applied_shield_prefab, transform.position, new Quaternion(0,0,0,1));
+            applied_shield = Instantiate(applied_shield_prefab, transform.position, new Quaternion(0, 0, 0, 1));
             applied_shield.parent = transform;
 
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Speed")
+        {
+            thrust *= 2;
+            speedboosted = true;
             Destroy(other.gameObject);
         }
     }
