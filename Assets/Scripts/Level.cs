@@ -16,7 +16,7 @@ public class Level : MonoBehaviour {
     public Transform player;
     public Transform target;
 
-    private int tile_size = 100;
+    private int tile_size = 250;
 
     public MapGenerator.Tile[,] map;
     public static Transform[,] transform_map;
@@ -29,13 +29,16 @@ public class Level : MonoBehaviour {
     void Start()
     {
         MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability, big_hole_prob);
-        map = map_generator.generate_map();
+        //map = map_generator.generate_map();
+        map = map_generator.generate_path_map();
         transform_map = new Transform[map_generator.width, map_generator.height];
+        float var = tile_size / 8;
         for(int i=0; i<map_generator.width; i++)
         {
             for (int j = 0; j < map_generator.height; j++)
             {
                 Vector3 real_pos = new Vector3(i * tile_size, 0, j * tile_size);
+                real_pos += new Vector3(Random.Range(-var, var), 0.0f, Random.Range(-var, var));
                 if (map[i, j] == MapGenerator.Tile.BigBlackHole)
                 {
                     Instantiate(big_black_hole, real_pos, Quaternion.identity);

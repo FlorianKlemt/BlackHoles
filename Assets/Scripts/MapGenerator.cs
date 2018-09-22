@@ -85,4 +85,42 @@ public class MapGenerator
         return map;
     }
 
+    public Tile[,] generate_path_map()
+    {
+        List<Vector2Int> map_holes = new List<Vector2Int>();
+        map_holes.Add(new Vector2Int(1, 0));
+
+        int min_y = 0;
+        int max_y = 0;
+        for(int x = 2; x < width-1; x++)
+        {
+            int y_offset = Random.Range(-1, 2);
+            int y = map_holes[map_holes.Count - 1].y + y_offset;
+            map_holes.Add(new Vector2Int(x, y));
+
+            if (y < min_y)
+                min_y = y;
+            else if (y > max_y)
+                max_y = y;
+        }
+
+        height = max_y - min_y + 1;
+        Tile[,] map = new Tile[width, height];
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                map[i, j] = Tile.Empty;
+            }
+        }
+
+        foreach(var hole in map_holes)
+        {
+            map[hole.x, hole.y - min_y] = Tile.BigBlackHole;
+        }
+        map[map_holes[0].x -1, map_holes[0].y - min_y] = Tile.Start;
+        map[map_holes[map_holes.Count - 1].x + 1, map_holes[map_holes.Count - 1].y - min_y] = Tile.Goal;
+        return map;
+    }
+
 }
