@@ -9,15 +9,14 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody player_rb;
     public bool alive;
     public Transform applied_shield_prefab;
-    private bool shielded;
     private Transform applied_shield;
+    public Transform explosion_prefab;
 
     private PlayerFuel player_fuel;
 
     void Start()
     {
         alive = true;
-        shielded = false;
         player_rb = GetComponent<Rigidbody>();
         player_fuel = GetComponent<PlayerFuel>();
     }
@@ -61,12 +60,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Astroid")
         {
-            //TODO explode the astroid?
+            Instantiate(explosion_prefab, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-            if (!shielded)
-            {
-                //TODO die
-            }
+            //TODO die
         }
     }
 
