@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour {
     public float speed_boost_duration;
     private float current_speed_boost_duration;
     private bool speedboosted;
+    private bool can_shoot;
+    public float weapon_duration;
+    private float current_weapon_duration;
+    public Transform bullet_prefab;
+    public float bullet_speed;
+    public float shooting_cooldown;
+    private float shooting_cooldown_left;
 
     private PlayerFuel player_fuel;
 
@@ -27,6 +34,9 @@ public class PlayerController : MonoBehaviour {
         level = GameObject.Find("GameController").GetComponent<Level>();
         current_speed_boost_duration = 0;
         speedboosted = false;
+        current_weapon_duration = 0;
+        can_shoot = false;
+        shooting_cooldown_left = 0;
     }
 
     void FixedUpdate()
@@ -55,6 +65,17 @@ public class PlayerController : MonoBehaviour {
             {
                 player_rb.AddForce(Vector3.back * thrust);
                 player_fuel.useFuel(100.0f * Time.fixedDeltaTime);
+            }
+            if (can_shoot && Input.GetKey(KeyCode.Space))
+            {
+                shooting_cooldown_left -= Time.fixedDeltaTime;
+                if (shooting_cooldown_left <= 0)
+                {
+                    var bullet = Instantiate(bullet_prefab, transform.position + transform.forward * 40,
+                        new Quaternion(90, 0, 0, 1));
+                    bullet.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bullet_speed;
+                    shooting_cooldown_left = shooting_cooldown;
+                }
             }
             
         }
@@ -98,6 +119,10 @@ public class PlayerController : MonoBehaviour {
             thrust *= 2;
             speedboosted = true;
             Destroy(other.gameObject);
+        }else if(other.gameObject.tag == "Weapon")
+        {
+            Destroy(other.gameObject);
+            can_shoot = true;
         }
     }
 

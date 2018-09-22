@@ -724,6 +724,11 @@ MonoBehaviour:
   ship_explosion_prefab: {fileID: 4374555404509490, guid: 43b842ae1eff24ad982e44e82308e4c0,
     type: 2}
   speed_boost_duration: 5
+  weapon_duration: 30
+  bullet_prefab: {fileID: 4371860605852996, guid: fce88004ad7f00847b9f730b2b6df52a,
+    type: 2}
+  bullet_speed: 300
+  shooting_cooldown: 0.5
 --- !u!54 &1046758992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1355,6 +1360,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1345a417b6518a54a8097bae27372fc6, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &1898596471
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -418
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.6830267
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2fff641375e02a84db57c204224f8750, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1936274176
 GameObject:
