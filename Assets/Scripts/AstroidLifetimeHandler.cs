@@ -13,7 +13,7 @@ public class AstroidLifetimeHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Vector3.Distance(transform.position, player.position) > destroy_distance)
+        if (player!=null && Vector3.Distance(transform.position, player.position) > destroy_distance)
         {
             Destroy(gameObject);
         }

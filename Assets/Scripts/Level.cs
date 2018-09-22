@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour {
 
@@ -66,5 +67,13 @@ public class Level : MonoBehaviour {
     public static Transform[,] get_transform_map()
     {
         return transform_map;
+    }
+
+    public IEnumerator Restart(float wait_time)
+    {
+        Debug.Log("Before");
+        yield return new WaitForSeconds(2);
+        Debug.Log("After");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

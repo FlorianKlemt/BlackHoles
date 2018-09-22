@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour {
     public bool alive;
     public Transform applied_shield_prefab;
     private Transform applied_shield;
-    public Transform explosion_prefab;
+    public Transform astroid_explosion_prefab;
+    public Transform ship_explosion_prefab;
+    private Level level;
 
     private PlayerFuel player_fuel;
 
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour {
         alive = true;
         player_rb = GetComponent<Rigidbody>();
         player_fuel = GetComponent<PlayerFuel>();
+        level = GameObject.Find("GameController").GetComponent<Level>();
     }
 
     void FixedUpdate()
@@ -60,9 +63,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Astroid")
         {
-            Instantiate(explosion_prefab, other.transform.position, Quaternion.identity);
+            Instantiate(astroid_explosion_prefab, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-            //TODO die
+            Death();
         }
     }
 
@@ -75,5 +78,17 @@ public class PlayerController : MonoBehaviour {
 
             Destroy(other.gameObject);
         }
+    }
+
+    public void Death()
+    {
+        Instantiate(ship_explosion_prefab, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+        StartCoroutine(level.Restart(10));
+    }
+
+    public void get_lost()
+    {
+
     }
 }

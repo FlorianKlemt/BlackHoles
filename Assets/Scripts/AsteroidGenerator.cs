@@ -17,6 +17,10 @@ public class AsteroidGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (player == null)
+        {
+            return;
+        }
         time_since_last += Time.deltaTime;
         if (time_since_last>=spawn_cooldown)
         {

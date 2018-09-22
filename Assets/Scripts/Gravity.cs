@@ -31,6 +31,10 @@ namespace _Scripts
         // Function that runs on every physics frame
         void FixedUpdate()
         {
+            if (player == null)
+            {
+                return;
+            }
             //fuel reload
             if (Vector3.Distance(player.position, transform.position)<fuel_load_distance)
             {
@@ -69,6 +73,7 @@ namespace _Scripts
                     if (rb.name == "Player")
                     {
                         rb.gameObject.GetComponent<PlayerController>().alive = false;
+                        rb.gameObject.GetComponent<PlayerController>().Death();
                     }
                 } else {
                     float force = (Gravitation * MassOutside * rb.mass) / (distance * distance);
