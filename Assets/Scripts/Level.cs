@@ -13,9 +13,11 @@ public class Level : MonoBehaviour {
     public int yDimension = 50;
     public float minProbability = 0.01f;
     public float maxProbability = 0.2f;
+    public float power_up_probability = 0.2f;
     public float big_hole_prob = 0.3f;
-    public Transform player;
+    private Transform player;
     public Transform target;
+    public Transform power_up;
 
     private int tile_size = 250;
 
@@ -29,7 +31,7 @@ public class Level : MonoBehaviour {
 
     void Start()
     {
-        MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability, big_hole_prob);
+        MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability, big_hole_prob, power_up_probability);
         //map = map_generator.generate_map();
         map = map_generator.generate_path_map();
         transform_map = new Transform[map_generator.width, map_generator.height];
@@ -43,7 +45,8 @@ public class Level : MonoBehaviour {
                 if (map[i, j] == MapGenerator.Tile.BigBlackHole)
                 {
                     Instantiate(big_black_hole, real_pos, Quaternion.identity);
-                }else if(map[i,j] == MapGenerator.Tile.SmallBlackHole)
+                }
+                else if(map[i,j] == MapGenerator.Tile.SmallBlackHole)
                 {
                     Instantiate(small_black_hole, real_pos, Quaternion.identity);
                 }
@@ -54,6 +57,10 @@ public class Level : MonoBehaviour {
                 else if (map[i, j] == MapGenerator.Tile.Goal)
                 {
                     Instantiate(target, real_pos, Quaternion.identity);
+                }
+                else if (map[i, j] == MapGenerator.Tile.PowerUp)
+                {
+                    Instantiate(power_up, real_pos, Quaternion.identity);
                 }
             }
         }
