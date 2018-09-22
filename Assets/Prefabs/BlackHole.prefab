@@ -174,10 +174,12 @@ MonoBehaviour:
   MassInside: 1000
   Gravitation: 10000
   MinRadius: 0.1
+  player: {fileID: 0}
+  fuel_load_distance: 100
   LayersToPull:
     serializedVersion: 2
     m_Bits: 512
-  lerp_time: 0
+  lerp_time: 0.3
 --- !u!135 &135093575060221636
 SphereCollider:
   m_ObjectHideFlags: 1

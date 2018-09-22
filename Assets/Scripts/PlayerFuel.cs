@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using System;
 
 public class PlayerFuel : MonoBehaviour {
-    private int startingFuel = 1000;                            // The amount of Fuel the player starts the game with.
-    private int currentFuel = 1000;                                   // The current Fuel the player has.
+    private float startingFuel = 1000.0f;                            // The amount of Fuel the player starts the game with.
+    private float currentFuel = 1000.0f;                                   // The current Fuel the player has.
     public Slider FuelSlider;                                 // Reference to the UI's Fuel bar.
     public Text messageField;
 
@@ -20,7 +20,7 @@ public class PlayerFuel : MonoBehaviour {
         no_fuel = false;
     }
 
-    public void addFuel(int amount)
+    public void addFuel(float amount)
     {
         currentFuel = Math.Min(currentFuel + amount, startingFuel);
         FuelSlider.value = currentFuel;
@@ -28,7 +28,7 @@ public class PlayerFuel : MonoBehaviour {
         messageField.color = Color.black;
     }
 
-    public void useFuel(int amount)
+    public void useFuel(float amount)
     {
         currentFuel -= amount;
         FuelSlider.value = currentFuel;
