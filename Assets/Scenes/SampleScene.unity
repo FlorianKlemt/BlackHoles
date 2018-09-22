@@ -1009,9 +1009,10 @@ MonoBehaviour:
   yDimension: 50
   minProbability: 0.01
   maxProbability: 0.2
+  power_up_probability: 0.2
   big_hole_prob: 0.3
-  player: {fileID: 0}
   target: {fileID: 4696054202721594, guid: dbeb08f0aa37e496b9090ddae8d4606b, type: 2}
+  power_up: {fileID: 4212244444463304, guid: a42c0c962ebec564e99afc937cf327b1, type: 2}
 --- !u!4 &1599162599
 Transform:
   m_ObjectHideFlags: 0
