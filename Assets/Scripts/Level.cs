@@ -5,37 +5,54 @@ using UnityEngine;
 public class Level : MonoBehaviour {
 
     // Use this for initialization
-    public Transform black_hole;
+    public Transform big_black_hole;
+    public Transform small_black_hole;
     public Transform white_hole;
     public int xDimension = 50;
     public int yDimension = 50;
     public float minProbability = 0.01f;
     public float maxProbability = 0.2f;
+    public float big_hole_prob = 0.3f;
     public Transform player;
+    public Transform target;
 
-    public int[,] map;
+    private int tile_size = 250;
+
+    public MapGenerator.Tile[,] map;
     public static Transform[,] transform_map;
 
     void Awake()
     {
         player = GameObject.Find("Player").transform;
-        player.position = new Vector3(0, 0, 0);
-        //player = Instantiate(player_prefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     void Start()
     {
-        MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability);
-        map = map_generator.generate_map();
+        MapGenerator map_generator = new MapGenerator(xDimension,yDimension,minProbability,maxProbability, big_hole_prob);
+        //map = map_generator.generate_map();
+        map = map_generator.generate_path_map();
         transform_map = new Transform[map_generator.width, map_generator.height];
+        float var = tile_size / 8;
         for(int i=0; i<map_generator.width; i++)
         {
             for (int j = 0; j < map_generator.height; j++)
             {
-                if (map[i, j] == 1)
+                Vector3 real_pos = new Vector3(i * tile_size, 0, j * tile_size);
+                real_pos += new Vector3(Random.Range(-var, var), 0.0f, Random.Range(-var, var));
+                if (map[i, j] == MapGenerator.Tile.BigBlackHole)
                 {
-                    Transform b_hole = Instantiate(black_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
-                    transform_map[i, j] = b_hole;
+                    Instantiate(big_black_hole, real_pos, Quaternion.identity);
+                }else if(map[i,j] == MapGenerator.Tile.SmallBlackHole)
+                {
+                    Instantiate(small_black_hole, real_pos, Quaternion.identity);
+                }
+                else if (map[i,j]==MapGenerator.Tile.Start)
+                {
+                    player.position = real_pos;
+                }
+                else if (map[i, j] == MapGenerator.Tile.Goal)
+                {
+                    Instantiate(target, real_pos, Quaternion.identity);
                 }
             }
         }

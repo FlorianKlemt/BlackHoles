@@ -16,6 +16,14 @@ namespace _Scripts
         //public float DistanceMultiplier; // Factor by which the distance affects force
 
         public LayerMask LayersToPull;
+        public float lerp_time;
+        private float lerp_value;
+        Vector3 lerp_from, lerp_to;
+
+        void Start()
+        {
+            lerp_value = 0;
+        }
 
         // Function that runs on every physics frame
         void FixedUpdate()
@@ -32,12 +40,27 @@ namespace _Scripts
 
                 float distance = direction.magnitude;
                 if (distance < MinRadius)
+                {
                     continue;
+                }
                 
                 if (distance < BlackHoleRadius) {
-                    rb.velocity = new Vector3(0,0,0);
+                    if (lerp_value == 0)
+                    {
+                        rb.velocity = new Vector3(0, 0, 0);
+                        lerp_from = rb.transform.position;
+                        lerp_to = transform.position;
+                    }
+                    lerp_value += Time.fixedDeltaTime / lerp_time;
+                    rb.transform.position = Vector3.Lerp(lerp_from, lerp_to, lerp_value);
+
+                    /*rb.velocity = new Vector3(0,0,0);
                     float force = (Gravitation * MassInside * rb.mass) / (distance * distance);
-                    rb.AddForce(direction.normalized*force);
+                    rb.AddForce(direction.normalized*force);*/
+                    if (rb.name == "Player")
+                    {
+                        rb.gameObject.GetComponent<PlayerController>().alive = false;
+                    }
                 } else {
                     float force = (Gravitation * MassOutside * rb.mass) / (distance * distance);
                     rb.AddForce(direction.normalized*force);
