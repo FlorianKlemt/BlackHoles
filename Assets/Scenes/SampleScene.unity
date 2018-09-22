@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4066c59b8a3521b41aeb1fdd87977909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  big_black_hole: {fileID: 4914997343102790, guid: d22c23e2c35594330b5120f7ae56d47e,
+  big_black_hole: {fileID: 4158189783636972, guid: 58aaca4ea7122fc42961dfef23f23ebd,
     type: 2}
   small_black_hole: {fileID: 4005097827040524, guid: 6d203e59c20fbac4f9b85b0584fdb628,
     type: 2}
