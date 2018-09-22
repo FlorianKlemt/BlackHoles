@@ -5,14 +5,14 @@ using UnityEngine;
 public class AsteroidGenerator : MonoBehaviour {
 
     public Transform astroid;
-    public Transform player;
+    private Transform player;
 
     // Use this for initialization
     public float min_speed, max_speed, life_time, spawn_cooldown;
     public float min_spawn_distance, max_spawn_distance;
     float time_since_last = 0;
 	void Start () {
-
+        player = GameObject.Find("Player").transform;
     }
 	
 	// Update is called once per frame
@@ -40,6 +40,6 @@ public class AsteroidGenerator : MonoBehaviour {
             = new Vector3(movement_direction.x, 0, movement_direction.y) * speed;
         new_astroid.GetComponent<Rigidbody>().angularVelocity 
             = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        Destroy(new_astroid.gameObject, life_time);
+        //Destroy(new_astroid.gameObject, life_time);
     }
 }

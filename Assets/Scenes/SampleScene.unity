@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &160994865
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: faae47bd15bf5844189272e007c848cb, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,48 +221,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &198947434
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: faae47bd15bf5844189272e007c848cb, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1599162597
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   yDimension: 50
   minProbability: 0.01
   maxProbability: 0.2
+  player: {fileID: 0}
 --- !u!4 &1599162599
 Transform:
   m_ObjectHideFlags: 0
@@ -280,15 +281,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   astroid: {fileID: 4180771818302690, guid: a2a92023ecb2d5c49be0b04546791f25, type: 2}
-  player: {fileID: 1622139213}
   min_speed: 20
   max_speed: 50
   life_time: 30
   spawn_cooldown: 0.5
   min_spawn_distance: 100
   max_spawn_distance: 500
---- !u!4 &1622139213 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4390760334141164, guid: faae47bd15bf5844189272e007c848cb,
-    type: 2}
-  m_PrefabInternal: {fileID: 198947434}

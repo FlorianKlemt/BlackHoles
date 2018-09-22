@@ -11,9 +11,17 @@ public class Level : MonoBehaviour {
     public int yDimension = 50;
     public float minProbability = 0.01f;
     public float maxProbability = 0.2f;
+    public Transform player;
 
     public int[,] map;
     public static Transform[,] transform_map;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player").transform;
+        player.position = new Vector3(0, 0, 0);
+        //player = Instantiate(player_prefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
 
     void Start()
     {
@@ -28,10 +36,7 @@ public class Level : MonoBehaviour {
                 {
                     Transform b_hole = Instantiate(black_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
                     transform_map[i, j] = b_hole;
-                }// else if (map[i, j] == 0) {
-                 //   Transform w_hole = Instantiate(white_hole, new Vector3(i*100, 0, j*100), Quaternion.identity);
-                 //   transform_map[i, j] = w_hole;
-                //}
+                }
             }
         }
     }
