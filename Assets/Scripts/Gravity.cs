@@ -8,9 +8,12 @@ namespace _Scripts
     public class Gravity : MonoBehaviour
     {
         public float PullRadius; // Radius to pull
-        public float GravitationalPull; // Pull force
-        public float MinRadius; // Minimum distance to pull from
-        public float DistanceMultiplier; // Factor by which the distance affects force
+        public float BlackHoleRadius;
+        public float MassOutside; // Pull force
+        public float MassInside;
+        public float Gravitation;
+        public float MinRadius = 0.1f; // Minimum distance to pull from
+        //public float DistanceMultiplier; // Factor by which the distance affects force
 
         public LayerMask LayersToPull;
 
@@ -22,23 +25,22 @@ namespace _Scripts
             foreach (var collider in colliders)
             {            
                 Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-                if (rb == null) continue; // Can only pull objects with Rigidbody
+                if (rb == null)
+                    continue; // Can only pull objects with Rigidbody
 
                 Vector3 direction = transform.position - collider.transform.position;
 
-                if (direction.magnitude < MinRadius) continue;
-
-                float distance = direction.sqrMagnitude * DistanceMultiplier + 1; // The distance formula
-                Debug.Log(direction.magnitude);
-
-                // Object mass also affects the gravitational pull
-                // rb.AddForce(direction.normalized * (GravitationalPull / distance) * rb.mass * Time.fixedDeltaTime);
-                if (direction.magnitude<50) {
+                float distance = direction.magnitude;
+                if (distance < MinRadius)
+                    continue;
+                
+                if (distance < BlackHoleRadius) {
                     rb.velocity = new Vector3(0,0,0);
-                    rb.AddForce(direction.normalized*GravitationalPull*70);
-                } else if (direction.magnitude<100) {
-                    rb.AddForce(direction.normalized*GravitationalPull/20);
+                    float force = (Gravitation * MassInside * rb.mass) / (distance * distance);
+                    rb.AddForce(direction.normalized*force);
+                } else {
+                    float force = (Gravitation * MassOutside * rb.mass) / (distance * distance);
+                    rb.AddForce(direction.normalized*force);
                 }
                 
             }

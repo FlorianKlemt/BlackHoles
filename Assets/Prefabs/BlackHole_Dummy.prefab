@@ -96,10 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86516ab9e03a734cb17fb2246276bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PullRadius: 2
-  GravitationalPull: 1000
+  PullRadius: 300
+  BlackHoleRadius: 50
+  MassOutside: 20
+  MassInside: 1000
+  Gravitation: 10000
   MinRadius: 0.1
-  DistanceMultiplier: 300
   LayersToPull:
     serializedVersion: 2
     m_Bits: 4294967295

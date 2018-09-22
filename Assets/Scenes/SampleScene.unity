@@ -218,16 +218,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114541486822911288, guid: faae47bd15bf5844189272e007c848cb,
-        type: 2}
-      propertyPath: damping
-      value: 0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 114541486822911288, guid: faae47bd15bf5844189272e007c848cb,
-        type: 2}
-      propertyPath: thrust
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faae47bd15bf5844189272e007c848cb, type: 2}
   m_IsPrefabAsset: 0
