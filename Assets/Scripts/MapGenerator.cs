@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapGenerator
 {
-    public enum Tile { Empty, SmallBlackHole, BigBlackHole, Start, Goal, PowerUp };
+    public enum Tile { Empty, SmallBlackHole, BigBlackHole, Start, Goal, ShieldPowerUp, SpeedPowerUp, DamagePowerUp };
 
     public int width, height, min_start_pos_offset;
     public float max_distance, min_blackhole_prob, max_blackhole_prob, blackhole_prob_range, big_hole_prob, power_up_prob;
@@ -123,14 +123,13 @@ public class MapGenerator
             map[hole.x, hole.y - min_y] = Tile.BigBlackHole;
             if(Random.Range(0.0f, 1.0f) > power_up_prob)
             {
-                if(Random.Range(0, 2) == 1)
-                {
-                    map[hole.x, y + 1] = Tile.PowerUp;
-                }
-                else
-                {
-                    map[hole.x, y - 1] = Tile.PowerUp;
-                }
+                Tile power_up = Tile.ShieldPowerUp;
+                if (Random.Range(0.0f, 1.0f) > 0.5f)
+                    power_up = Tile.SpeedPowerUp;
+                int y_pos = y + 1;
+                if (Random.Range(0.0f, 1.0f) > 0.5f)
+                    y_pos = y - 1;
+                map[hole.x, y_pos] = power_up;
             }
         }
         map[map_holes[0].x -1, map_holes[0].y - min_y] = Tile.Start;

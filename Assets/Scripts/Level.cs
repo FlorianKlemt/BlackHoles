@@ -17,7 +17,8 @@ public class Level : MonoBehaviour {
     public float big_hole_prob = 0.3f;
     private Transform player;
     public Transform target;
-    public Transform power_up;
+    public Transform shield_power_up;
+    public Transform speed_power_up;
 
     private int tile_size = 250;
 
@@ -58,9 +59,13 @@ public class Level : MonoBehaviour {
                 {
                     Instantiate(target, real_pos, Quaternion.identity);
                 }
-                else if (map[i, j] == MapGenerator.Tile.PowerUp)
+                else if (map[i, j] == MapGenerator.Tile.ShieldPowerUp)
                 {
-                    Instantiate(power_up, real_pos, Quaternion.identity);
+                    Instantiate(shield_power_up, real_pos, Quaternion.identity);
+                }
+                else if (map[i, j] == MapGenerator.Tile.SpeedPowerUp)
+                {
+                    Instantiate(speed_power_up, real_pos, Quaternion.identity);
                 }
             }
         }
