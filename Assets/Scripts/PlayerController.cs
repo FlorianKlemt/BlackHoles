@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (alive)
+        if (alive && !player_fuel.out_of_fuel())
         {   
             player_rb.velocity *= damping;
             if (Input.GetKey(KeyCode.A))

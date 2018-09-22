@@ -64,6 +64,10 @@ namespace _Scripts
                 } else {
                     float force = (Gravitation * MassOutside * rb.mass) / (distance * distance);
                     rb.AddForce(direction.normalized*force);
+                    if (rb.name == "Player")
+                    {
+                        rb.gameObject.GetComponent<PlayerFuel>().addFuel(2);
+                    }
                 }
                 
             }
