@@ -40,6 +40,5 @@ public class AsteroidGenerator : MonoBehaviour {
             = new Vector3(movement_direction.x, 0, movement_direction.y) * speed;
         new_astroid.GetComponent<Rigidbody>().angularVelocity 
             = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        //Destroy(new_astroid.gameObject, life_time);
     }
 }
