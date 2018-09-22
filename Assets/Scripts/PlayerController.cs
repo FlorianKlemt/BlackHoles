@@ -8,12 +8,16 @@ public class PlayerController : MonoBehaviour {
     public float damping;
     public Rigidbody player_rb;
     public bool alive;
+    public Transform applied_shield_prefab;
+    private bool shielded;
+    private Transform applied_shield;
 
     private PlayerFuel player_fuel;
 
     void Start()
     {
         alive = true;
+        shielded = false;
         player_rb = GetComponent<Rigidbody>();
         player_fuel = GetComponent<PlayerFuel>();
     }
@@ -53,13 +57,27 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject.tag == "Astroid")
+        if (other.gameObject.tag == "Astroid")
         {
             //TODO explode the astroid?
-            Destroy(collision.gameObject);
-            //TODO lose?
+            Destroy(other.gameObject);
+            if (!shielded)
+            {
+                //TODO die
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Shield")
+        {
+            applied_shield = Instantiate(applied_shield_prefab, transform.position, new Quaternion(0,0,0,1));
+            applied_shield.parent = transform;
+
+            Destroy(other.gameObject);
         }
     }
 }
