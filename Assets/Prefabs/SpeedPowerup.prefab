@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 136185292165548202}
   m_Layer: 0
   m_Name: SpeedPowerup
-  m_TagString: Shield
+  m_TagString: Speed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
