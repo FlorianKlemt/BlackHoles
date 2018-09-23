@@ -19,6 +19,7 @@ public class Level : MonoBehaviour {
     public Transform target;
     public Transform shield_power_up;
     public Transform speed_power_up;
+    public Transform damage_power_up;
 
     private int tile_size = 250;
 
@@ -66,6 +67,10 @@ public class Level : MonoBehaviour {
                 else if (map[i, j] == MapGenerator.Tile.SpeedPowerUp)
                 {
                     Instantiate(speed_power_up, real_pos, Quaternion.identity);
+                }
+                else if (map[i, j] == MapGenerator.Tile.DamagePowerUp)
+                {
+                    Instantiate(damage_power_up, real_pos, Quaternion.identity);
                 }
             }
         }

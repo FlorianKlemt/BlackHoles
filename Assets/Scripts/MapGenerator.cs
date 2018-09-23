@@ -123,9 +123,16 @@ public class MapGenerator
             map[hole.x, hole.y - min_y] = Tile.BigBlackHole;
             if(Random.Range(0.0f, 1.0f) > power_up_prob)
             {
-                Tile power_up = Tile.ShieldPowerUp;
-                if (Random.Range(0.0f, 1.0f) > 0.5f)
+                int power_index = Random.Range(0, 3);
+                Tile power_up = Tile.Empty;
+                if (power_index == 0)
+                    power_up = Tile.ShieldPowerUp;
+                else if (power_index == 1)
                     power_up = Tile.SpeedPowerUp;
+                else if (power_index == 2)
+                    power_up = Tile.DamagePowerUp;
+                else
+                    Debug.Log("something went wrong in map generator");
                 int y_pos = y + 1;
                 if (Random.Range(0.0f, 1.0f) > 0.5f)
                     y_pos = y - 1;
