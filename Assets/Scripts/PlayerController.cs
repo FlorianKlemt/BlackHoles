@@ -57,7 +57,32 @@ public class PlayerController : MonoBehaviour {
         if (alive && !player_fuel.out_of_fuel())
         {   
             player_rb.velocity *= damping;
-            if (Input.GetKey(KeyCode.A))
+
+
+            //mouse control start
+            Vector3 mouse = Input.mousePosition;
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3(
+                                                                mouse.x,
+                                                                mouse.y,
+                                                                transform.position.y));
+            Vector3 forward = mouseWorld - transform.position;
+            forward.y = 0;
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+
+            if (alive && !player_fuel.out_of_fuel())
+            {
+                player_rb.velocity *= damping;
+                if (Input.GetMouseButton(0))
+                {
+                    player_rb.AddForce(transform.forward * thrust);
+                    player_fuel.useFuel(100.0f * Time.fixedDeltaTime);
+                }
+            }
+            //mouse control end
+
+
+            //WASD control start
+            /*if (Input.GetKey(KeyCode.A))
             {
                 player_rb.AddForce(Vector3.left * thrust);
                 player_fuel.useFuel(100.0f * Time.fixedDeltaTime);
@@ -79,6 +104,11 @@ public class PlayerController : MonoBehaviour {
                 player_rb.AddForce(Vector3.back * thrust);
                 player_fuel.useFuel(100.0f * Time.fixedDeltaTime);
             }
+            if (player_rb.velocity != Vector3.zero){
+            transform.rotation = Quaternion.LookRotation(player_rb.velocity, Vector3.up);
+            }*/
+            //WASD control end
+
             if (can_shoot && Input.GetKey(KeyCode.Space))
             {
                 shooting_cooldown_left -= Time.fixedDeltaTime;
@@ -92,9 +122,6 @@ public class PlayerController : MonoBehaviour {
                 }
             }
             
-        }
-        if (player_rb.velocity != Vector3.zero){
-            transform.rotation = Quaternion.LookRotation(player_rb.velocity, Vector3.up);
         }
 
         if (speedboosted)
