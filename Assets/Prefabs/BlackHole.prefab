@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86516ab9e03a734cb17fb2246276bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PullRadius: 300
+  PullRadius: 350
   BlackHoleRadius: 50
-  MassOutside: 20
+  MassOutside: 70
   MassInside: 1000
   Gravitation: 10000
   MinRadius: 0.1
