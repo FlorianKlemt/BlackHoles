@@ -17,7 +17,8 @@ public class Level : MonoBehaviour {
     public Transform speed_power_up;
     public Transform damage_power_up;
 
-    private int tile_size = 250;
+    private int tile_height = 200;
+    private int tile_width = 400;
 
     public MapGenerator.Tile[,] map;
     public static Transform[,] transform_map;
@@ -33,12 +34,12 @@ public class Level : MonoBehaviour {
         //map = map_generator.generate_map();
         map = map_generator.generate_path_map();
         transform_map = new Transform[map_generator.width, map_generator.height];
-        float var = tile_size / 8;
+        float var = tile_width / 8;
         for(int i=0; i<map_generator.width; i++)
         {
             for (int j = 0; j < map_generator.height; j++)
             {
-                Vector3 real_pos = new Vector3(i * tile_size, 0, j * tile_size);
+                Vector3 real_pos = new Vector3(i * tile_width, 0, j * tile_height);
                 real_pos += new Vector3(Random.Range(-var, var), 0.0f, Random.Range(-var, var));
                 if (map[i, j] == MapGenerator.Tile.BigBlackHole)
                 {

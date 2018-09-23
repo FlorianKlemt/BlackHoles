@@ -20,5 +20,9 @@ public class BlackHoleCollisionHandler : MonoBehaviour {
         {
             Destroy(col.gameObject, 0.2f);
         }
+		else if(col.gameObject.tag == "Bullet")
+		{
+			Destroy(col.gameObject, 0.1f);
+		}
     }
 }
