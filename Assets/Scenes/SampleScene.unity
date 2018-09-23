@@ -730,6 +730,7 @@ MonoBehaviour:
     type: 2}
   bullet_speed: 300
   shooting_cooldown: 0.5
+  messageField: {fileID: 1612061650}
 --- !u!54 &1046758992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -995,6 +996,16 @@ Prefab:
     - target: {fileID: 224684751638507806, guid: 66b923d9ee38f2c41afbbf60103b0a28,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414461358961124, guid: 66b923d9ee38f2c41afbbf60103b0a28,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414461358961124, guid: 66b923d9ee38f2c41afbbf60103b0a28,
+        type: 2}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

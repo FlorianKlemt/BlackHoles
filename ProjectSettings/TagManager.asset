@@ -9,6 +9,7 @@ TagManager:
   - Speed
   - Weapon
   - BlackHole
+  - Goal
   layers:
   - Default
   - TransparentFX
