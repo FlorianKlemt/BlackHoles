@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     public float thrust;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour {
     private PlayerFuel player_fuel;
     private PlayerPowerUpGUIController player_powerup_gui;
 
+    public Text messageField;
+
     void Start()
     {
         alive = true;
@@ -44,6 +47,13 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.R))
+        {
+            messageField.color = Color.black;
+            messageField.text = "";
+            StartCoroutine(level.Restart(0));
+        }
+
         if (alive && !player_fuel.out_of_fuel())
         {   
             player_rb.velocity *= damping;
@@ -132,6 +142,10 @@ public class PlayerController : MonoBehaviour {
             can_shoot = true;
 
             player_powerup_gui.set_current_upgrade(PlayerPowerUpGUIController.Powerup.DamagePowerUp);
+        }else if(other.gameObject.tag == "Goal")
+        {
+            messageField.color = Color.green;
+            messageField.text = "You reached the sun!\nCongratulations\nPress R to restart...";
         }
     }
 
