@@ -26,12 +26,14 @@ public class PlayerController : MonoBehaviour {
     private float shooting_cooldown_left;
 
     private PlayerFuel player_fuel;
+    private PlayerPowerUpGUIController player_powerup_gui;
 
     void Start()
     {
         alive = true;
         player_rb = GetComponent<Rigidbody>();
         player_fuel = GetComponent<PlayerFuel>();
+        player_powerup_gui = GetComponent<PlayerPowerUpGUIController>();
         level = GameObject.Find("GameController").GetComponent<Level>();
         current_speed_boost_duration = 0;
         speedboosted = false;
@@ -120,10 +122,15 @@ public class PlayerController : MonoBehaviour {
             thrust *= 2;
             speedboosted = true;
             Destroy(other.gameObject);
-        }else if(other.gameObject.tag == "Weapon")
+
+            player_powerup_gui.set_current_upgrade(PlayerPowerUpGUIController.Powerup.SpeedPowerUp);
+        }
+        else if(other.gameObject.tag == "Weapon")
         {
             Destroy(other.gameObject);
             can_shoot = true;
+
+            player_powerup_gui.set_current_upgrade(PlayerPowerUpGUIController.Powerup.DamagePowerUp);
         }
     }
 
