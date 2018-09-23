@@ -1139,11 +1139,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   astroid: {fileID: 4180771818302690, guid: a2a92023ecb2d5c49be0b04546791f25, type: 2}
   min_speed: 30
-  max_speed: 70
+  max_speed: 100
   life_time: 30
-  spawn_cooldown: 1
-  min_spawn_distance: 400
-  max_spawn_distance: 1000
+  spawn_cooldown: 0.1
+  min_spawn_distance: 600
+  max_spawn_distance: 1500
 --- !u!1 &1612061648
 GameObject:
   m_ObjectHideFlags: 0
