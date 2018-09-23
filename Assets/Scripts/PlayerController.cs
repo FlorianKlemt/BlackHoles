@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public float thrust;
@@ -129,8 +130,9 @@ public class PlayerController : MonoBehaviour {
     public void Death()
     {
         Instantiate(ship_explosion_prefab, transform.position, Quaternion.identity);
-        gameObject.SetActive(false);
-        StartCoroutine(level.Restart(10));
+        player_rb.velocity = new Vector3(0, 0, 0);
+        StartCoroutine(level.Restart(2));
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void get_lost()

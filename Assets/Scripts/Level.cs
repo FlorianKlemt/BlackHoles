@@ -83,9 +83,7 @@ public class Level : MonoBehaviour {
 
     public IEnumerator Restart(float wait_time)
     {
-        Debug.Log("Before");
-        yield return new WaitForSeconds(2);
-        Debug.Log("After");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(wait_time);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
