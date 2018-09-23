@@ -1021,6 +1021,8 @@ MonoBehaviour:
     type: 2}
   speed_power_up: {fileID: 4513817387838640, guid: 1345a417b6518a54a8097bae27372fc6,
     type: 2}
+  damage_power_up: {fileID: 4375504573748396, guid: 2fff641375e02a84db57c204224f8750,
+    type: 2}
 --- !u!4 &1599162599
 Transform:
   m_ObjectHideFlags: 0
