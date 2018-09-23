@@ -157,10 +157,15 @@ public class PlayerController : MonoBehaviour {
         }
         else if (other.gameObject.tag == "Speed")
         {
-            thrust *= 2;
+            if(player_powerup_gui.current_upgrade != PlayerPowerUpGUIController.Powerup.SpeedPowerUp)
+            {
+
+                thrust *= 2;
+            }
             speedboosted = true;
             Destroy(other.gameObject);
 
+            current_speed_boost_duration = 0;
             player_powerup_gui.set_current_upgrade(PlayerPowerUpGUIController.Powerup.SpeedPowerUp);
         }
         else if(other.gameObject.tag == "Weapon")

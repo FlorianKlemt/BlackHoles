@@ -9,7 +9,7 @@ public class PlayerPowerUpGUIController : MonoBehaviour {
     public enum Powerup {None, SpeedPowerUp, DamagePowerUp };
     float speed_duration, damage_duration;
     float current_upgrade_used_time, current_upgrade_max_time;
-    Powerup current_upgrade;
+    public Powerup current_upgrade;
 
 
     private Slider powerup_slider;
