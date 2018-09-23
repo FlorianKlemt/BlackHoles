@@ -74,8 +74,9 @@ public class PlayerController : MonoBehaviour {
                 shooting_cooldown_left -= Time.fixedDeltaTime;
                 if (shooting_cooldown_left <= 0)
                 {
-                    var bullet = Instantiate(bullet_prefab, transform.position + transform.forward * 40,
-                        new Quaternion(90, 0, 0, 1));
+                    Quaternion rotation = Quaternion.LookRotation(transform.forward);
+                    var bullet = Instantiate(bullet_prefab, transform.position + transform.forward * 40, rotation);
+                        //new Quaternion(90, 0, 0, 1));
                     bullet.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bullet_speed;
                     shooting_cooldown_left = shooting_cooldown;
                 }
